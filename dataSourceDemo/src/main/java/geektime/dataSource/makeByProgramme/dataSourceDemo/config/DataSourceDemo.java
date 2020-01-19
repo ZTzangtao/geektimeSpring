@@ -1,4 +1,4 @@
-package geektime.spring.datasource.datasourcedemo.config;
+package geektime.dataSource.makeByProgramme.dataSourceDemo.config;
 
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,7 @@ public class DataSourceDemo {
     public static void main(String[] args) throws SQLException {
         ApplicationContext applicationContext =
                 new ClassPathXmlApplicationContext("applicationContext*.xml");
+
         showBeans(applicationContext);
         datasourceDemo(applicationContext);
     }
@@ -48,18 +49,15 @@ public class DataSourceDemo {
 
     }
 
-    private static void showBeans(ApplicationContext applicationContext) {
-        System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
-
-
-    }
-
     private static void datasourceDemo(ApplicationContext applicationContext) throws SQLException {
         DataSourceDemo demo = applicationContext.getBean("dataSourceDemo",DataSourceDemo.class);
         demo.showDataSource();
+
     }
 
-
+    private static void showBeans(ApplicationContext applicationContext) {
+        System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
+    }
 
     private void showDataSource() throws SQLException {
         System.out.println(dataSource.toString());
